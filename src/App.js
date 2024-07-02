@@ -10,22 +10,19 @@ import { getCartItems, addToCart, removeFromCart } from './components/utils/cart
 import Navbar from './components/Navbar';
 
 const App = () => {
-    const cartItemCount = 3;
     const [cartItems, setCartItems] = useState([]);
+    const [cartItemCount, setCartItemCount] = useState(1); // State for cart item count
 
     useEffect(() => {
-        setCartItems(getCartItems());
+        // Load cart items from localStorage on component mount
+        const storedCartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        setCartItems(storedCartItems);
+        setCartItemCount(storedCartItems.length); // Update cart item count
     }, []);
 
-    const handleAddToCart = (product) => {
-        addToCart(product);
-        setCartItems([...cartItems, product]);
-    };
-
-    const handleRemoveFromCart = (productId) => {
-        removeFromCart(productId);
-        const updatedCart = cartItems.filter(item => item.id !== productId);
-        setCartItems(updatedCart);
+    const updateCartCount = () => {
+        const storedCartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        setCartItemCount(storedCartItems.length); // Update cart item count
     };
     return (
         <Router>
@@ -44,12 +41,10 @@ const App = () => {
                     <main className="container">
                          {/* Routes */}
                         <Routes>
-                            <Route path="/" element={<Signup />} />
-                            <Route path="/home" element={<Home />} />
-                            <Route path="/products" element={<Products />} />
-                            <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />} />
+                            <Route path="/home" element={<Home updateCartCount={updateCartCount} />} />
+                            <Route path="/products" element={<Products updateCartCount={updateCartCount} />} />
+                            <Route path="/cart" element={<Cart />} />
                             <Route path="/profile" element={<Profile />} />
-                            <Route path="/products" element={<ProductList />} />
                         </Routes>
                     </main>
                     <footer className="footer">

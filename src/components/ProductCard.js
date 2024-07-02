@@ -14,7 +14,9 @@ const ProductCard = ({ product }) => {
 
     const handleQuantityChange = (event) => {
         const newQuantity = parseInt(event.target.value);
+        addToCart({ ...product, newQuantity });
         setQuantity(newQuantity);
+
     };
 
     return (
