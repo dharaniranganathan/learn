@@ -1,0 +1,81 @@
+.product-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.product-details {
+    padding: 16px;
+}
+
+.product-details h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+    color: #f0c14b; /* Amazon's primary color for stars */
+    font-size: 14px;
+}
+
+.product-rating span {
+    margin-left: 4px;
+    color: #007185; /* Amazon's secondary color for reviews */
+}
+
+.product-price {
+    margin-top: 8px;
+}
+
+.prev-price {
+    text-decoration: line-through;
+    color: #888888;
+    margin-right: 8px;
+}
+
+.new-price {
+    color: #b12704; /* Amazon's color for discounted price */
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.product-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.product-actions button {
+    background-color: #f0c14b;
+    color: #111111;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.product-actions button:hover {
+    background-color: #d8ab33; /* Darken the background color on hover */
+}
