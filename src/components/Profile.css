@@ -1,0 +1,41 @@
+.profile-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.orders-history,
+.addresses,
+.payment-methods {
+    margin-top: 20px;
+}
+
+.addresses ul,
+.payment-methods ul {
+    list-style: none;
+    padding: 0;
+}
+
+.addresses li,
+.payment-methods li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.addresses li p,
+.payment-methods li p {
+    margin: 5px 0;
+}
+
+/* Add more specific styling as needed */

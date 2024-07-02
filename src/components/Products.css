@@ -1,0 +1,14 @@
+/* Products.css */
+
+.products-container {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+.products-container h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
