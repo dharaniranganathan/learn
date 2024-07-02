@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
+import './Cart.css';
 //import {  removeFromCart } from './utils/cart';
 
 const Cart = () => {
