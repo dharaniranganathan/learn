@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
 import './Cart.css';
-//import {  removeFromCart } from './utils/cart';
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -18,44 +16,54 @@ const Cart = () => {
         localStorage.setItem('cart', JSON.stringify(updatedCartItems));
     };
 
+    const updateQuantity = (itemId, newQuantity) => {
+        const updatedCartItems = cartItems.map(item => {
+            if (item.id === itemId) {
+                return { ...item, quantity: newQuantity };
+            }
+            return item;
+        });
+        setCartItems(updatedCartItems);
+        localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+    };
+
+    const calculateTotal = () => {
+        return cartItems.reduce((total, item) => {
+            return total + (item.newPrice * item.quantity);
+        }, 0).toFixed(2);
+    };
+
     return (
-        <div className="layout">
-            <header className="header">
-                <div className="container">
-                    <Navbar />
-                </div>
-            </header>
-            <main className="container">
-                <div className="cart-container">
-                    <h2>Shopping Cart</h2>
-                    {cartItems.length === 0 ? (
-                        <p>Your cart is empty.</p>
-                    ) : (
-                        <div className="cart-items">
-                            {cartItems.map(item => (
-                                <div className="cart-item" key={item.id}>
-                                    <div className="cart-item-image">
-                                        <img src={item.img} alt={item.title} />
-                                    </div>
-                                    <div className="cart-item-details">
-                                        <h3>{item.title}</h3>
-                                        <p>Price: ${item.newPrice}</p>
-                                        <button className="remove-button" onClick={() => removeFromCart(item.id)}>
-                                            {/*<AiFillDelete />*/}
-                                            Remove
-                                        </button>
-                                    </div>
+        <div className="cart-container">
+            <h2>Shopping Cart</h2>
+            {cartItems.length === 0 ? (
+                <p>Your cart is empty.</p>
+            ) : (
+                <div className="cart-items">
+                    {cartItems.map(item => (
+                        <div className="cart-item" key={item.id}>
+                            <div className="cart-item-image">
+                                <img src={item.img} alt={item.title} />
+                            </div>
+                            <div className="cart-item-details">
+                                <h3>{item.title}</h3>
+                                <p>Price: ${item.newPrice}</p>
+                                <div className="quantity-control">
+                                    <button className="quantity-btn" onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
+                                    <span className="quantity">{item.quantity}</span>
+                                    <button className="quantity-btn" onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
                                 </div>
-                            ))}
+                                <button className="remove-button" onClick={() => removeFromCart(item.id)}>
+                                    Remove
+                                </button>
+                            </div>
                         </div>
-                    )}
+                    ))}
+                    <div className="cart-total">
+                        <h3>Total: ${calculateTotal()}</h3>
+                    </div>
                 </div>
-            </main>
-            <footer className="footer">
-                <div className="container">
-                    <p>&copy; 2024 Your Company. All rights reserved.</p>
-                </div>
-            </footer>
+            )}
         </div>
     );
 };

@@ -6,8 +6,7 @@ import  '../styles/Home.css';
 
 const Products = () => {
     return (
-        <div>
-            <Navbar /> {/* Render Navbar component */}
+        <div class="product-container">
             <h2>Products Page</h2>
             <ProductList /> {/* Example of rendering product list */}
         </div>

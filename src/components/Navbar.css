@@ -30,3 +30,27 @@
 .nav-links li a:hover {
     color: #ffd700; /* Amazon's link hover color */
 }
+.cart-link {
+    position: relative;
+}
+
+.cart-notification {
+    position: absolute;
+    top: -14px; /* Adjust top position as needed */
+    right: -26px; /* Adjust right position as needed */
+    /*background-color: red;*/
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.item-count {
+    font-size: 14px;
+    font-weight: bold;
+}

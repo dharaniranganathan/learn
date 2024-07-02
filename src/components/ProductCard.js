@@ -1,34 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { addToCart } from './utils/cart';
-import  './ProductCard.css';
-//import { AiFillStar } from 'react-icons/ai'; // Assuming you are using React Icons for stars
+import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
-    const { id, img, title, newPrice, company, color, category } = product;
+    const { id, img, title, newPrice } = product;
+    const [quantity, setQuantity] = useState(1); // State for quantity
 
     const handleAddToCart = () => {
-        addToCart(product); // Add product to cart
+        addToCart({ ...product, quantity }); // Add product to cart with quantity
         alert('Item added to cart!');
+        setQuantity(1); // Reset quantity after adding to cart
+    };
+
+    const handleQuantityChange = (event) => {
+        const newQuantity = parseInt(event.target.value);
+        setQuantity(newQuantity);
     };
 
     return (
         <div className="product-card">
             <div className="product-image">
-                <img src={product.img} alt={product.title} />
+                <img src={img} alt={title} />
             </div>
             <div className="product-details">
-                <h3>{product.title}</h3>
-                <div className="product-rating">
-                    {/*{product.star} /!* Assuming 'star' is the star rating icon *!/*/}
-                    <span>{product.reviews}</span>
-                </div>
+                <h3>{title}</h3>
                 <div className="product-price">
-                    <span className="prev-price">{product.prevPrice}</span>
-                    <span className="new-price">{product.newPrice}</span>
+                    <span className="new-price">${newPrice}</span>
                 </div>
-                <div className="product-actions">
+                <div className="quantity-control">
+                    <input
+                        type="number"
+                        min="1"
+                        value={quantity}
+                        onChange={handleQuantityChange}
+                    />
                     <button onClick={handleAddToCart}>Add to Cart</button>
-                    <button>Buy Now</button>
                 </div>
             </div>
         </div>
